@@ -5,10 +5,11 @@ import at.aau.serg.autoguarddemo.repositories.CustomerRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/customer")
+@RequestMapping("/api/customers")
 public class CustomerController {
 
     private CustomerRepository customerRepository;
@@ -19,7 +20,7 @@ public class CustomerController {
 
 
     @PostMapping
-    public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {
+    public ResponseEntity<Customer> createCustomer(@RequestBody @NotNull Customer customer) {
         customerRepository.save(customer);
         return ResponseEntity.ok(customer);
     }
